@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Donat Manis - Toko Donat Terbaik</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #ffeaa7, #fab1a0);
+        color: #333;
+        line-height: 1.6;
+      }
+      header {
+        background: linear-gradient(135deg, #fd79a8, #e84393);
+        color: white;
+        padding: 1.5rem;
+        text-align: center;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      header h1 {
+        margin: 0;
+        font-size: 2.5rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+      nav a {
+        margin: 0 1rem;
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.3s;
+      }
+      nav a:hover {
+        color: #ffeaa7;
+      }
+      section {
+        padding: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      #produk h2,
+      #tentang h2,
+      #order h2 {
+        text-align: center;
+        margin-bottom: 2rem;
+        font-size: 2rem;
+        color: #e84393;
+      }
+      .donat-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+      }
+      .donat-item {
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        padding: 1.5rem;
+        transition: transform 0.3s, box-shadow 0.3s;
+        animation: fadeIn 0.5s ease-in;
+      }
+      .donat-item:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+      }
+      .donat-item img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 10px;
+      }
+      .donat-item h3 {
+        margin: 1rem 0 0.5rem;
+        color: #e84393;
+      }
+      .donat-item p {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #333;
+      }
+      .quantity-input {
+        width: 60px;
+        padding: 0.5rem;
+        margin: 0.5rem 0;
+        border: 1px solid #fab1a0;
+        border-radius: 5px;
+        text-align: center;
+      }
+      button {
+        background: linear-gradient(135deg, #fd79a8, #e84393);
+        color: white;
+        border: none;
+        padding: 0.8rem 1.5rem;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 600;
+        transition: background 0.3s, transform 0.2s;
+        margin-top: 1rem;
+      }
+      button:hover {
+        background: linear-gradient(135deg, #e84393, #fd79a8);
+        transform: scale(1.05);
+      }
+      #tentang {
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 15px;
+        margin: 2rem auto;
+        max-width: 800px;
+      }
+      #order form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        max-width: 500px;
+        margin: 0 auto;
+      }
+      #order input,
+      #order textarea {
+        padding: 0.8rem;
+        border: 2px solid #fab1a0;
+        border-radius: 10px;
+        font-family: "Poppins", sans-serif;
+      }
+      footer {
+        text-align: center;
+        padding: 1.5rem;
+        background: #333;
+        color: white;
+        font-size: 0.9rem;
+      }
+      #cart {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        display: none;
+        z-index: 1000;
+        max-width: 400px;
+        width: 90%;
+      }
+      #cart h3 {
+        color: #e84393;
+        margin-bottom: 1rem;
+      }
+      #cart ul {
+        list-style: none;
+        padding: 0;
+      }
+      #cart li {
+        padding: 0.5rem 0;
+        border-bottom: 1px solid #eee;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @media (max-width: 768px) {
+        header h1 {
+          font-size: 2rem;
+        }
+        .donat-list {
+          grid-template-columns: 1fr;
+        }
+        section {
+          padding: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1><i class="fas fa-birthday-cake"></i> Donat Ibu Rumida</h1>
+      <nav>
+        <a href="#produk"><i class="fas fa-list"></i> Produk</a>
+        <a href="#tentang"><i class="fas fa-info-circle"></i> Tentang Kami</a>
+        <a href="#order"><i class="fas fa-envelope"></i> Order Khusus</a>
+      </nav>
+    </header>
+
+    <section id="produk">
+      <h2>Menu Donat Lezat</h2>
+      <div class="donat-list">
+        <div class="donat-item">
+          <img src="REGULER.avif" alt="Donat reguler" />
+          <h3>Donat reguler</h3>
+          <p>Rp 2.000</p>
+          <input
+            type="number"
+            class="quantity-input"
+            id="qty-reguler"
+            min="1"
+            value="1"
+            placeholder="Qty"
+          />
+          <button onclick="addToCart('Donat reguler', 2000, 'qty-reguler')">
+            <i class="fas fa-cart-plus"></i> Order
+          </button>
+        </div>
+        <div class="donat-item">
+          <img src="STROBERRY.jpg" alt="Special strawberry mesis" />
+          <h3>Special strawberry mesis</h3>
+          <p>Rp 4.000</p>
+          <input
+            type="number"
+            class="quantity-input"
+            id="qty-strawberrymesis"
+            min="1"
+            value="1"
+            placeholder="Qty"
+          />
+          <button
+            onclick="addToCart('Special strawberry mesis', 4000, 'qty-strawberrymesis')"
+          >
+            <i class="fas fa-cart-plus"></i> Order
+          </button>
+        </div>
+        <div class="donat-item">
+          <img src="TARO.jpg" alt="Special taro coklat" />
+          <h3>Special taro coklat</h3>
+          <p>Rp 4.000</p>
+          <input
+            type="number"
+            class="quantity-input"
+            id="qty-tarocoklat"
+            min="1"
+            value="1"
+            placeholder="Qty"
+          />
+          <button
+            onclick="addToCart('Special taro coklat', 4000, 'qty-tarocoklat')"
+          >
+            <i class="fas fa-cart-plus"></i> Order
+          </button>
+        </div>
+        <div class="donat-item">
+          <img src="COKLAT.jpg" alt="Special coklat kacang" />
+          <h3>Special coklat kacang</h3>
+          <p>Rp 4.000</p>
+          <input
+            type="number"
+            class="quantity-input"
+            id="qty-coklatkacang"
+            min="1"
+            value="1"
+            placeholder="Qty"
+          />
+          <button
+            onclick="addToCart('Special coklat kacang', 4000, 'qty-coklatkacang')"
+          >
+            <i class="fas fa-cart-plus"></i> Order
+          </button>
+        </div>
+        <div class="donat-item">
+          <img src="ISIS 3.jpg" alt="special isi 3" />
+          <h3>special isi 3</h3>
+          <p>Rp 10.000</p>
+          <input
+            type="number"
+            class="quantity-input"
+            id="qty-isi3"
+            min="1"
+            value="1"
+            placeholder="Qty"
+          />
+          <button onclick="addToCart('special isi 3', 10000, 'qty-isi3')">
+            <i class="fas fa-cart-plus"></i> Order
+          </button>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 2rem">
+        <button onclick="showCart()">
+          <i class="fas fa-shopping-cart"></i> KONFIRMASI ORDER
+        </button>
+      </div>
+    </section>
+
+    <section id="tentang">
+      <h2>Tentang Kami</h2>
+      <p>
+        <i class="fas fa-heart"></i> Kami menyediakan donat segar dan lezat
+        setiap hari. Dibuat dengan bahan pilihan tanpa pengawet! Kunjungi toko
+        kami di batu tengel atau pesan online.
+      </p>
+    </section>
+
+    <section id="order">
+      <h2>Order Khusus</h2>
+      <form id="order-form">
+        <input type="text" id="order-name" placeholder="Nama Anda" required />
+        <input
+          type="text"
+          id="order-promo"
+          placeholder="Kode Promo (Opsional)"
+        />
+        <textarea
+          id="order-message"
+          placeholder="Pesan Anda"
+          rows="4"
+          required
+        ></textarea>
+        <button type="submit">
+          <i class="fas fa-paper-plane"></i> Kirim Order ke WA
+        </button>
+      </form>
+    </section>
+
+    <footer>
+      <p>
+        &copy; 2025 Donat Manis. Dibuat dengan <i class="fas fa-heart"></i> oleh
+        Ibu Rumida
+      </p>
+    </footer>
+
+    <div id="cart">
+      <h3><i class="fas fa-shopping-cart"></i> Keranjang Belanja</h3>
+      <ul id="cart-items"></ul>
+      <p>Total: Rp <span id="total">0</span></p>
+      <button onclick="checkout()">
+        <i class="fas fa-credit-card"></i> Checkout
+      </button>
+      <button onclick="hideCart()"><i class="fas fa-times"></i> Tutup</button>
+    </div>
+
+    <script>
+      let cart = [];
+      let total = 0;
+
+      function addToCart(name, price, qtyId) {
+        const qty = parseInt(document.getElementById(qtyId).value) || 1;
+        if (qty <= 0) {
+          alert("Jumlah harus lebih dari 0!");
+          return;
+        }
+        const existingItem = cart.find((item) => item.name === name);
+        if (existingItem) {
+          existingItem.qty += qty;
+          existingItem.subtotal += price * qty;
+        } else {
+          cart.push({ name, price, qty, subtotal: price * qty });
+        }
+        total += price * qty;
+        alert(`${qty} ${name} ditambahkan ke keranjang!`);
+      }
+
+      function showCart() {
+        document.getElementById("cart").style.display = "block";
+        updateCartDisplay();
+      }
+
+      function hideCart() {
+        document.getElementById("cart").style.display = "none";
+      }
+
+      function updateCartDisplay() {
+        const cartItems = document.getElementById("cart-items");
+        cartItems.innerHTML = "";
+        cart.forEach((item) => {
+          const li = document.createElement("li");
+          li.innerHTML = `<i class="fas fa-circle"></i> ${item.name} x${item.qty} - Rp ${item.subtotal}`;
+          cartItems.appendChild(li);
+        });
+        document.getElementById("total").textContent = total;
+      }
+
+      function checkout() {
+        if (cart.length === 0) {
+          alert("Keranjang kosong!");
+          return;
+        }
+        let message = "Halo, saya ingin pesan donat:\n";
+        cart.forEach((item) => {
+          message += `- ${item.name} x${item.qty} (Rp ${item.subtotal})\n`;
+        });
+        message += `Total: Rp ${total}\nAlamat: [isi alamat Anda]`;
+        const waUrl = `https://wa.me/6281249357369?text=${encodeURIComponent(
+          message
+        )}`;
+        window.open(waUrl, "_blank");
+        cart = [];
+        total = 0;
+        updateCartDisplay();
+        hideCart();
+      }
+
+      document
+        .getElementById("order-form")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          const name = document.getElementById("order-name").value;
+          const promo = document.getElementById("order-promo").value;
+          const message = document.getElementById("order-message").value;
+          let waMessage = `Halo, saya ${name}. `;
+          if (promo) {
+            waMessage += `Kode Promo: ${promo}. `;
+          }
+          waMessage += `Pesan: ${message}`;
+          const waUrl = `https://wa.me/6281249357369?text=${encodeURIComponent(
+            waMessage
+          )}`;
+          window.open(waUrl, "_blank");
+          alert("Order dikirim ke WhatsApp!");
+        });
+    </script>
+  </body>
+</html>
